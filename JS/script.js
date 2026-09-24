@@ -1,21 +1,25 @@
 const reveals = document.querySelectorAll(".reveal");
 
-window.addEventListener("scroll", function () {
+function checkRevealSections() {
   const windowHeight = window.innerHeight;
 
   reveals.forEach(function (element) {
     const elementTop = element.getBoundingClientRect().top;
+    const shouldShow = elementTop < windowHeight - 50;
 
-    if (elementTop < windowHeight - 50) {
-      element.classList.add("show");
-    } else {
-      element.classList.remove("show");
-    }
+    element.classList.toggle("show", shouldShow);
   });
-});
+}
+
+window.addEventListener("DOMContentLoaded", checkRevealSections);
+window.addEventListener("load", checkRevealSections);
+window.addEventListener("scroll", checkRevealSections, { passive: true });
+
 const form = document.querySelector(".f");
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  form.reset();
-});
+if (form) {
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    form.reset();
+  });
+}
