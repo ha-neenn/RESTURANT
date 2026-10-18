@@ -1,24 +1,21 @@
 const reveals = document.querySelectorAll(".reveal");
 
 function checkRevealSections() {
-  const windowHeight = window.innerHeight;
-
   reveals.forEach(function (element) {
-    const elementTop = element.getBoundingClientRect().top;
-    const shouldShow = elementTop < windowHeight - 50;
+    const position = element.getBoundingClientRect();
 
-    if (shouldShow) {
+    if (position.top < window.innerHeight && position.bottom > 0) {
       element.classList.add("show");
+    } else {
+      element.classList.remove("show");
     }
   });
 }
 
-checkRevealSections();
 document.documentElement.classList.add("reveal-enabled");
+checkRevealSections();
 
-window.addEventListener("DOMContentLoaded", checkRevealSections);
-window.addEventListener("load", checkRevealSections);
-window.addEventListener("scroll", checkRevealSections, { passive: true });
+window.addEventListener("scroll", checkRevealSections);
 
 const form = document.querySelector(".f");
 
