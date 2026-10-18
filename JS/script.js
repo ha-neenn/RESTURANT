@@ -7,9 +7,14 @@ function checkRevealSections() {
     const elementTop = element.getBoundingClientRect().top;
     const shouldShow = elementTop < windowHeight - 50;
 
-    element.classList.toggle("show", shouldShow);
+    if (shouldShow) {
+      element.classList.add("show");
+    }
   });
 }
+
+checkRevealSections();
+document.documentElement.classList.add("reveal-enabled");
 
 window.addEventListener("DOMContentLoaded", checkRevealSections);
 window.addEventListener("load", checkRevealSections);

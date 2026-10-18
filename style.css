@@ -160,12 +160,15 @@ textarea:focus {
   box-shadow: 0 0 0 1px rgba(86, 70, 27, 0.92) !important;
 }
 .reveal {
-  opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s ease;
 }
 
-.reveal.show {
+.reveal-enabled .reveal:not(.show) {
+  opacity: 0;
+}
+
+.reveal-enabled .reveal.show {
   opacity: 1;
   transform: translateY(0);
 }
